@@ -25,10 +25,10 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get all of the workouts for the user
+     * Get all of the events for the user
      */
-    public function workouts()
+    public function events()
     {
-        return $this->hasMany(Workout::class);
+        return $this->hasMany(Event::class);
     }
 }

@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/workouts', 'WorkoutController@index');
-Route::post('/workout', 'WorkoutController@store');
-Route::delete('/workout/{workout}', 'WorkoutController@destroy');
+Route::get('/events', 'EventController@index');
+Route::post('/event', 'EventController@store');
+Route::delete('/event/{event}', 'EventController@destroy');
 
 /*
 |--------------------------------------------------------------------------

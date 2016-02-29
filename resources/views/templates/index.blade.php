@@ -41,7 +41,7 @@
 			@if (count($templates) > 0)
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Current Workout Templates
+						My Workout Templates
 					</div>
 
 					<div class="panel-body">

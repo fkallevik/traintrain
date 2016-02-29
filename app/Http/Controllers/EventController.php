@@ -52,13 +52,8 @@ class EventController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		$this->validate($request, [
-			'name' => 'required|max:255', // Can be removed because an event only needs timestamp
-		]);
 
-		$request->user()->events()->create([
-			'name' => $request->name,
-		]);
+		$request->user()->events()->create([]);
 
 		return redirect('/events');
 	}

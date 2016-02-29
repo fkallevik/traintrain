@@ -28,4 +28,17 @@ class EventController extends Controller
 	{
 		return view('events.index');
 	}
+
+	/**
+	 * Create a new event.
+	 *
+	 * @param  Request $request
+	 * @return  Response
+	 */
+	public function store(Request $request)
+	{
+		$this->validate($request, [
+			'name' => 'required|max:255', // Can be removed because an event only needs timestamp
+		]);
+	}
 }

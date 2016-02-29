@@ -28,9 +28,15 @@ Route::group(['middleware' => ['web']], function () {
         return view('welcome');
     })->middleware('guest');
 
+    // Events
     Route::get('/events', 'EventController@index');
     Route::post('/event', 'EventController@store');
     Route::delete('/event/{event}', 'EventController@destroy');
+
+    // Templates
+    Route::get('/templates', 'TemplateController@index');
+    Route::post('/template', 'TemplateController@store');
+    Route::delete('/template/{template}', 'TemplateController@destroy');
 
     // Authentication Routes
     Route::auth();

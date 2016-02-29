@@ -23,4 +23,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get all of the workouts for the user
+     */
+    public function workouts()
+    {
+        return $this->hasMany(Workout::class);
+    }
 }

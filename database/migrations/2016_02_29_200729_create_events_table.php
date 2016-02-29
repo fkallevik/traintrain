@@ -16,7 +16,6 @@ class CreateEventsTable extends Migration
 			$table->increments('id');
 			$table->integer('user_id')->index();
 			$table->integer('template_id')->unsigned();
-			$table->foreign('template_id')->references('id')->on('templates');
 			$table->boolean('completed')->default(false);
 			$table->timestamps();
 		});

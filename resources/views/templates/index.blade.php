@@ -54,8 +54,6 @@
 								@foreach ($templates as $template)
 									<tr>
 										<td class="table-text"><a href="/templates/{{ $template->id }}">{{ $template->name }}</a></td>
-										
-
 										<!-- template Delete Button -->
 										<td>
 											<form action="/template/{{ $template->id }}" method="POST">

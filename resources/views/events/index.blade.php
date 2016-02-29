@@ -1,3 +1,9 @@
+<?php
+use App\Template;
+use App\User;
+
+?>
+
 @extends('layouts.app')
 
 @section('content')
@@ -19,11 +25,14 @@
 						<!-- Add Event Button -->
 						<div class="form-group">
 							<div class="col-xs-6">
-								  <label for="select-template">Select Workout Template:</label>
-								  <select class="form-control" id="select-template">
-								    <option>Template 1</option>
-								    <option>Template 2</option>
-								  </select>
+									<label for="select-template">Select Workout Template:</label>
+									<select class="form-control" id="select-template" name="template">
+										@foreach ($templates as $template)
+											<option value="{{ $template->id }}">
+												{{ $template->name }}
+											</option>
+										@endforeach
+									</select>
 							</div>
 							<div class="col-xs-offset-2 col-xs-4">
 								<button type="submit" class="btn btn-default">
@@ -52,6 +61,9 @@
 								@foreach ($events as $event)
 									<tr>
 										<td class="table-text"><div>{{ $event->created_at }}</div></td>
+
+										<?php $templateName = Template::where('id', '=', $event->template_id)->get()->lists('name')->get(0); ?>
+										<td><?php echo $templateName; ?></td>
 
 										<!-- event Delete Button -->
 										<td>

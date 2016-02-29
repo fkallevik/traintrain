@@ -55,11 +55,11 @@ class TemplateController extends Controller
 	{
 
 		$this->validate($request, [
-		    'name' => 'required|min:3',
+			'name' => 'required|min:3',
 		]);
 
 		$request->user()->templates()->create([
-		    'name' => $request->name,
+			'name' => $request->name,
 		]);
 
 		return redirect('/templates');
@@ -75,9 +75,9 @@ class TemplateController extends Controller
 	 */
 	public function destroy(Request $request, Template $template)
 	{
-	    $this->authorize('destroy', $template);
-	    $template->delete();
-	    return redirect('/templates');
+		$this->authorize('destroy', $template);
+		$template->delete();
+		return redirect('/templates');
 	}
 
 	/**

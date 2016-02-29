@@ -57,9 +57,11 @@ class TemplateController extends Controller
 		$this->validate($request, [
 		    'name' => 'required|min:3',
 		]);
+
 		$request->user()->templates()->create([
 		    'name' => $request->name,
 		]);
+
 		return redirect('/templates');
 	}
 

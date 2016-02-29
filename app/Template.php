@@ -16,10 +16,10 @@ class Template extends Model
 	/**
 	 * Get all the exercises for the template
 	 */
-	public function exercises()
-	{
-		return $this->hasMany('App\Exercise');
-	}
+	// public function exercises()
+	// {
+	// 	return $this->hasMany('App\Exercise');
+	// }
 
 	/**
 	 * Get all the events that use the template

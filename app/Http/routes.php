@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/workouts', 'WorkoutController@index');
+Route::post('/workout', 'WorkoutController@store');
+Route::delete('/workout/{workout}', 'WorkoutController@destroy');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes

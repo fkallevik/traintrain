@@ -29,3 +29,7 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
     //
 });
+
+
+// Authentication Routes
+Route::auth();

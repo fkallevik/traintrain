@@ -15,9 +15,9 @@ class CreateEventsTable extends Migration
 		Schema::create('events', function (Blueprint $table) {
 			$table->increments('id');
 			$table->integer('user_id')->index();
+			$table->integer('template_id')->unsigned();
 			$table->foreign('template_id')->references('id')->on('templates');
 			$table->boolean('completed')->default(false);
-			$table->integer('user_id')->index();
 			$table->timestamps();
 		});
 	}

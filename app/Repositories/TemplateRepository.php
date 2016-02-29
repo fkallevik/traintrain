@@ -3,19 +3,19 @@
 namespace App\Repositories;
 
 use App\User;
-use App\Event;
+use App\Template;
 
-class EventRepository
+class TemplateRepository
 {
 	/**
-	 * Get all of the events for a given user.
+	 * Get all of the templates for a given user.
 	 *
 	 * @param  User $user
 	 * @return Collection
 	 */
 	public function forUser(User $user)
 	{
-		return Event::where('user_id', $user->id)
+		return Template::where('user_id', $user->id)
 					->orderBy('created_at', 'asc')
 					->get();
 	}

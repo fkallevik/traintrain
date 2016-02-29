@@ -17,4 +17,15 @@ class EventController extends Controller
 	{
 		$this->middleware('auth');
 	}
+
+	/**
+	 * Display a list of all of the users events.
+	 *
+	 * @param  Request $request
+	 * @return  Response
+	 */
+	public function index(Request $request)
+	{
+		return view('events.index');
+	}
 }

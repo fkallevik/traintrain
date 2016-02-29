@@ -11,14 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/events', 'EventController@index');
-Route::post('/event', 'EventController@store');
-Route::delete('/event/{event}', 'EventController@destroy');
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -31,9 +23,15 @@ Route::delete('/event/{event}', 'EventController@destroy');
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    
+    Route::get('/', function () {
+        return view('welcome');
+    })->middleware('guest');
+
+    Route::get('/events', 'EventController@index');
+    Route::post('/event', 'EventController@store');
+    Route::delete('/event/{event}', 'EventController@destroy');
+
+    // Authentication Routes
+    Route::auth();
 });
-
-
-// Authentication Routes
-Route::auth();

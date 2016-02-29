@@ -62,4 +62,17 @@ class EventController extends Controller
 
 		return redirect('/events');
 	}
+
+	
+	/**
+	 * Destroy the given event.
+	 *
+	 * @param  Request  $request
+	 * @param  Event  $event
+	 * @return Response
+	 */
+	public function destroy(Request $request, Event $event)
+	{
+	    
+	}
 }

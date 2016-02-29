@@ -63,7 +63,7 @@ class EventController extends Controller
 		return redirect('/events');
 	}
 
-	
+
 	/**
 	 * Destroy the given event.
 	 *
@@ -73,6 +73,10 @@ class EventController extends Controller
 	 */
 	public function destroy(Request $request, Event $event)
 	{
-	    
+	    $this->authorize('destroy', $event);
+
+	    $event->delete();
+
+	    return redirect('/events');
 	}
 }

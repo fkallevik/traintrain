@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventsTable extends Migration
+class CreateTemplatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,9 @@ class CreateEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('templates', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->index();
-            $table->foreign('template_id')->references('id')->on('templates');
-            $table->boolean('completed')->default(false);
-            $table->integer('user_id')->index();
+            $table->json('exercises');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ class CreateEventsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('events');
+        Schema::drop('templates');
     }
 }

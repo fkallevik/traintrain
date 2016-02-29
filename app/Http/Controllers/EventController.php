@@ -2,20 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use App\Event;
 use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Repositories\EventRepository;
 
 class EventController extends Controller
 {
+	/**
+	 * The event repository instance.
+	 *
+	 * @var EventRepository
+	 */
+	protected $events;
+
 	/**
 	 * Create a new controller instance.
 	 *
 	 * @return  void
 	 */
-	public function __construct()
+	public function __construct(EventRepository $events)
 	{
 		$this->middleware('auth');
+
+		$this->events = $events;
 	}
 
 	/**
@@ -26,7 +37,11 @@ class EventController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		return view('events.index');
+		$events = Event::where('user_id', $request->user()->id)->get();
+
+		return view('events.index', [
+			'events' => $this->events->forUser($request->user()),
+		]);
 	}
 
 	/**
@@ -40,5 +55,11 @@ class EventController extends Controller
 		$this->validate($request, [
 			'name' => 'required|max:255', // Can be removed because an event only needs timestamp
 		]);
+
+		$request->user()->events()->create([
+			'name' => $request->name,
+		]);
+
+		return redirect('/events');
 	}
 }

@@ -77,4 +77,15 @@ class TemplateController extends Controller
 	    $template->delete();
 	    return redirect('/templates');
 	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  \App\Template $template
+	 * @return Response
+	 */
+	public function show(Template $template)
+	{
+		return view('templates.show', compact('template'));
+	}
 }

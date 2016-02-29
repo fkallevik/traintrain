@@ -53,7 +53,8 @@
 							<tbody>
 								@foreach ($templates as $template)
 									<tr>
-										<td class="table-text"><div>{{ $template->name }}</div></td>
+										<td class="table-text"><a href="/templates/{{ $template->id }}">{{ $template->name }}</a></td>
+										
 
 										<!-- template Delete Button -->
 										<td>

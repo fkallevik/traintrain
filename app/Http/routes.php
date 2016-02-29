@@ -35,6 +35,7 @@ Route::group(['middleware' => ['web']], function () {
 
     // Templates
     Route::get('/templates', 'TemplateController@index');
+    Route::get('/templates/{template}', 'TemplateController@show');
     Route::post('/template', 'TemplateController@store');
     Route::delete('/template/{template}', 'TemplateController@destroy');
 

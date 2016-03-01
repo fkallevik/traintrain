@@ -16,7 +16,7 @@ class CreateTemplatesTable extends Migration
 			$table->increments('id');
 			$table->integer('user_id')->index();
 			$table->string('name');
-			// $table->SOME KIND OF STRUCT FOR THE EXERCISES
+			$table->longText('exercise_ids'); // json_encode
 			$table->timestamps();
 		});
 	}

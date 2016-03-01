@@ -23,22 +23,26 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
-    
-    Route::get('/', function () {
-        return view('welcome');
-    })->middleware('guest');
+	
+	Route::get('/', function () {
+		return view('welcome');
+	})->middleware('guest');
 
-    // Events
-    Route::get('/events', 'EventController@index');
-    Route::post('/event', 'EventController@store');
-    Route::delete('/event/{event}', 'EventController@destroy');
+	// // Events
+	// Route::get('/events', 'EventController@index');
+	// Route::post('/event', 'EventController@store');
+	// Route::delete('/event/{event}', 'EventController@destroy');
 
-    // Templates
-    Route::get('/templates', 'TemplateController@index');
-    Route::get('/templates/{template}', 'TemplateController@show');
-    Route::post('/template', 'TemplateController@store');
-    Route::delete('/template/{template}', 'TemplateController@destroy');
+	// // Templates
+	// Route::get('/templates', 'TemplateController@index');
+	// Route::get('/templates/{template}', 'TemplateController@show');
+	// Route::post('/template', 'TemplateController@store');
+	// Route::delete('/template/{template}', 'TemplateController@destroy');
 
-    // Authentication Routes
-    Route::auth();
+	Route::resource('events', 'EventController');
+	Route::resource('events', 'EventController');
+	Route::resource('templates', 'TemplateController');
+
+	// Authentication Routes
+	Route::auth();
 });

@@ -47,8 +47,7 @@
 			<div class="collapse navbar-collapse" id="app-navbar-collapse">
 				<!-- Left Side Of Navbar -->
 				<ul class="nav navbar-nav">
-					<li><a href="{{ url('/') }}">Home</a></li>
-					<li><a href="{{ url('/templates') }}">Workout Templates</a></li>
+					<li>{!! link_to_route('templates.index', 'Workout Templates') !!}</li>
 				</ul>
 
 				<!-- Right Side Of Navbar -->
@@ -73,7 +72,24 @@
 		</div>
 	</nav>
 
-	@yield('content')
+	<div class="container">
+		<div class="content">
+			@if (Session::has('message'))
+				<div class="flash alert-info">
+					<p>{{ Session::get('message') }}</p>
+				</div>
+			@endif
+		 
+		 	@if ($errors->any())
+		 		<div class='flash alert-danger'>
+		 			@foreach ( $errors->all() as $error )
+		 				<p>{{ $error }}</p>
+		 			@endforeach
+		 		</div>
+		 	@endif
+			@yield('content')
+		</div>
+	</div>
 
 	<!-- JavaScripts -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

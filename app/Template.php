@@ -14,14 +14,6 @@ class Template extends Model
 	protected $fillable = ['name'];
 
 	/**
-	 * Get all the exercises for the template
-	 */
-	// public function exercises()
-	// {
-	// 	return $this->hasMany('App\Exercise');
-	// }
-
-	/**
 	 * Get all the events that use the template
 	 */
 	public function events()

@@ -6,6 +6,7 @@ use App\Template;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 use App\Repositories\TemplateRepository;
 
 class TemplateController extends Controller
@@ -52,7 +53,7 @@ class TemplateController extends Controller
 	 */
 	public function create()
 	{
-		//
+		// Not in use
 	}
 
 	/**
@@ -72,7 +73,7 @@ class TemplateController extends Controller
 			'name' => $request->name,
 		]);
 
-		return redirect('/templates');
+		return Redirect::route('templates.index')->with('message', 'Template created');
 	}
 
 	/**
@@ -120,6 +121,6 @@ class TemplateController extends Controller
 	{
 		$this->authorize('destroy', $template);
 		$template->delete();
-		return redirect('/templates');
+		return view('templates.index');
 	}
 }

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\EventRepository;
+use Illuminate\Support\Facades\Redirect;
 use App\Repositories\TemplateRepository;
 
 class EventController extends Controller
@@ -63,7 +64,7 @@ class EventController extends Controller
 	 */
 	public function create()
 	{
-		//
+		// Not in use
 	}
 
 	/**
@@ -75,21 +76,24 @@ class EventController extends Controller
 	public function store(Request $request)
 	{
 		$request->user()->events()->create([
-			'template_id' => $request->template,
+			'template_id' => $request->template_id,
 		]);
 
-		return redirect('/events');
+		$templates = Template::where('user_id', $request->user()->id)->get();
+		$events = Event::where('user_id', $request->user()->id)->get();
+
+		return Redirect::route('events.index')->with('message', 'Session created');
 	}
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  Event $event
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show($id)
 	{
-		//
+		return view('events.show', ['event' => Event::findOrFail($id)]);
 	}
 
 	/**
@@ -118,14 +122,13 @@ class EventController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  Request  $request
-	 * @param  Event  $event
-	 * @return Response
+	 * @param  Event $event
+	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(Request $request, Event $event)
+	public function destroy(Event $event)
 	{
-		$this->authorize('destroy', $event);
+		// $this->authorize('destroy', $event);
 		$event->delete();
-		return redirect('/events');
+		return Redirect::route('events.index')->with('message', 'Session deleted');
 	}
 }

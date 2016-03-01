@@ -19,6 +19,7 @@ class EventPolicy
 	 */
 	public function destroy(User $user, Event $event)
 	{
+
 		return $user->id === $event->user_id;
 	}
 }

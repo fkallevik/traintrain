@@ -40,7 +40,6 @@ Route::group(['middleware' => ['web']], function () {
 	// Route::delete('/template/{template}', 'TemplateController@destroy');
 
 	Route::resource('events', 'EventController');
-	Route::resource('events', 'EventController');
 	Route::resource('templates', 'TemplateController');
 
 	// Authentication Routes

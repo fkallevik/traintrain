@@ -69,11 +69,13 @@ class TemplateController extends Controller
 			'name' => 'required|min:3',
 		]);
 
-		$request->user()->templates()->create([
+		$newTemplate = $request->user()->templates()->create([
 			'name' => $request->name,
 		]);
 
-		return Redirect::route('templates.index')->with('message', 'Template created');
+		$this->authorize('edit', $newTemplate);
+
+		return Redirect::route('templates.edit', $newTemplate)->with('message', 'Template created');
 	}
 
 	/**
@@ -100,7 +102,7 @@ class TemplateController extends Controller
 		$this->authorize('edit', $template);
 
 		return view('templates.edit', [
-		    'template' => $template,
+			'template' => $template,
 		]);
 	}
 

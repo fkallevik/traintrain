@@ -79,18 +79,12 @@ class TemplateController extends Controller
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  \App\Template $template
+	 * @param  int $id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show($id)
 	{
-		$template = Template::findOrFail($id);
-		
-		$this->authorize('show', $template);
-
-		return view('templates.show', [
-		    'template' => $template,
-		]);
+		//
 	}
 
 	/**
@@ -101,7 +95,13 @@ class TemplateController extends Controller
 	 */
 	public function edit($id)
 	{
-		//
+		$template = Template::findOrFail($id);
+		
+		$this->authorize('edit', $template);
+
+		return view('templates.edit', [
+		    'template' => $template,
+		]);
 	}
 
 	/**

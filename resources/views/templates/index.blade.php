@@ -4,7 +4,7 @@
 	<h2>Create a Workout Template</h2>
 	
 	{!! Form::model(new App\Template, ['route' => ['templates.store']]) !!}
-	    @include('templates/partials/_form', ['submit_text' => 'Create Workout Template'])
+	    @include('templates/partials/_form_template_name', ['submit_text' => 'Create Workout Template'])
 	{!! Form::close() !!}
 
 	@if ( !$templates->count() )
@@ -19,7 +19,7 @@
 			<tbody>
 				@foreach ($templates as $template)
 					<tr>
-						<td class="table-text"><a href="{{ route('templates.show', $template) }}">{{ $template->name }}</a></td>
+						<td class="table-text"><a href="{{ route('templates.edit', $template) }}">{{ $template->name }}</a></td>
 					</tr>
 				@endforeach
 			</tbody>

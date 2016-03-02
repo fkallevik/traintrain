@@ -86,7 +86,11 @@ class TemplateController extends Controller
 	 */
 	public function show($id)
 	{
-		//
+		$template = Template::findOrFail($id);
+		
+		$this->authorize('edit', $template);
+
+		return Redirect::route('templates.edit', $template);
 	}
 
 	/**

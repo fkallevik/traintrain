@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Template;
-use App\Exercise;
-use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Input;
-use App\Repositories\TemplateRepository;
+
+use App\Http\Requests;
+use App\Template;
 
 class ExerciseController extends Controller
 {
@@ -43,9 +39,13 @@ class ExerciseController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create()
+	public function create($id)
 	{
-		return view('exercises.create');
+		$template = Template::findOrFail($id);
+		
+		return view('exercises.create', [
+		    'template' => $template,
+		]);
 	}
 
 	/**

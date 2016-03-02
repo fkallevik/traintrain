@@ -92,7 +92,7 @@ class SessionController extends Controller
 		$this->authorize('show', $session);
 
 		return view('sessions.show', [
-		    'session' => $session,
+			'session' => $session,
 		]);
 	}
 

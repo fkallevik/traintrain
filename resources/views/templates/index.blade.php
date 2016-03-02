@@ -14,7 +14,6 @@
 		<table class="table table-striped template-table">
 			<thead>
 				<th>Workout Template</th>
-				<th>&nbsp;</th>
 			</thead>
 			<tbody>
 				@foreach ($templates as $template)

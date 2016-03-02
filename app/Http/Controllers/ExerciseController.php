@@ -64,7 +64,8 @@ class ExerciseController extends Controller
 
 		$input = Input::all();
 		$input['template_id'] = $id;
-		Exercise::create( $input );
+		
+		$exercise = Exercise::create( $input );
 
 		return Redirect::route('templates.edit', $id)->with('Task created.');
 	}

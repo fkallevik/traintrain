@@ -9,7 +9,7 @@
 	<p>Session: {{ $session }}</p>
 
 	{!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('sessions.destroy', $session))) !!}
-        {!! link_to_route('sessions.edit', 'Edit', array($session), array('class' => 'btn btn-info')) !!}
-        {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
+		{!! link_to_route('sessions.edit', 'Edit', array($session), array('class' => 'btn btn-info')) !!}
+		{!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
 	{!! Form::close() !!}
 @endsection

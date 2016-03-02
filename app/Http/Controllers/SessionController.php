@@ -131,7 +131,6 @@ class SessionController extends Controller
 	public function destroy($id)
 	{
 		$session = Session::findOrFail($id);
-		// dd($id);
 		$this->authorize('destroy', $session);
 		$session->delete();
 		return Redirect::route('sessions.index')->with('message', 'Session deleted');

@@ -28,7 +28,7 @@ class TemplateController extends Controller
 		$this->middleware('auth');
 
 		$this->templates = $templates;
-		
+
 	}
 
 	/**
@@ -87,7 +87,7 @@ class TemplateController extends Controller
 	public function show($id)
 	{
 		$template = Template::findOrFail($id);
-		
+
 		$this->authorize('edit', $template);
 
 		return Redirect::route('templates.edit', $template);
@@ -102,7 +102,7 @@ class TemplateController extends Controller
 	public function edit($id)
 	{
 		$template = Template::findOrFail($id);
-		
+
 		$this->authorize('edit', $template);
 
 		return view('templates.edit', [
@@ -129,10 +129,11 @@ class TemplateController extends Controller
 	 * @param  Template  $template
 	 * @return Response
 	 */
-	public function destroy(Request $request, Template $template)
+	public function destroy($id)
 	{
+		$template = Template::findOrFail($id);
 		$this->authorize('destroy', $template);
 		$template->delete();
-		return view('templates.index');
+		return Redirect::route('templates.index')->with('message', 'Template deleted');
 	}
 }

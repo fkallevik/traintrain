@@ -7,10 +7,15 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
 use App\Repositories\TemplateRepository;
 
 class TemplateController extends Controller
 {
+	protected $rules = [
+		'name' => ['required', 'min:3'],
+	];
+
 	/**
 	 * The template repository instance.
 	 *
@@ -65,9 +70,7 @@ class TemplateController extends Controller
 	public function store(Request $request)
 	{
 
-		$this->validate($request, [
-			'name' => 'required|min:3',
-		]);
+		$this->validate($request, $rules);
 
 		$newTemplate = $request->user()->templates()->create([
 			'name' => $request->name,
@@ -119,7 +122,11 @@ class TemplateController extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		//
+		$template = Template::findOrFail($id);
+		$input = array_except(Input::all(), '_method');
+		$template->update($input);
+
+		return Redirect::route('templates.edit', $template)->with('message', 'Template updated.');
 	}
 
 	/**

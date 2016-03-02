@@ -3,19 +3,19 @@
 namespace App\Repositories;
 
 use App\User;
-use App\Event;
+use App\Session;
 
-class EventRepository
+class SessionRepository
 {
 	/**
-	 * Get all of the events for a given user.
+	 * Get all of the sessions for a given user.
 	 *
 	 * @param  User $user
 	 * @return Collection
 	 */
 	public function forUser(User $user)
 	{
-		return Event::where('user_id', $user->id)
+		return Session::where('user_id', $user->id)
 					->orderBy('created_at', 'asc')
 					->get();
 	}

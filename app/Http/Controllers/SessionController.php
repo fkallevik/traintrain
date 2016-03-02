@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Event;
+use App\Session;
 use App\Template;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\EventRepository;
+use App\Repositories\SessionRepository;
 use Illuminate\Support\Facades\Redirect;
 use App\Repositories\TemplateRepository;
 
-class EventController extends Controller
+class SessionController extends Controller
 {
 	/**
-	 * The event repository instance.
+	 * The session repository instance.
 	 *
-	 * @var EventRepository
+	 * @var SessionRepository
 	 */
-	protected $events;
+	protected $sessions;
 
 	/**
 	 * The template repository instance.
@@ -32,11 +32,11 @@ class EventController extends Controller
 	 *
 	 * @return  void
 	 */
-	public function __construct(EventRepository $events, TemplateRepository $templates)
+	public function __construct(SessionRepository $sessions, TemplateRepository $templates)
 	{
 		$this->middleware('auth');
 
-		$this->events = $events;
+		$this->sessions = $sessions;
 		$this->templates = $templates;
 	}
 	
@@ -49,10 +49,10 @@ class EventController extends Controller
 	public function index(Request $request)
 	{
 		$templates = Template::where('user_id', $request->user()->id)->get();
-		$events = Event::where('user_id', $request->user()->id)->get();
+		$sessions = Session::where('user_id', $request->user()->id)->get();
 
-		return view('events.index', [
-			'events' => $this->events->forUser($request->user()),
+		return view('sessions.index', [
+			'sessions' => $this->sessions->forUser($request->user()),
 			'templates' => $this->templates->forUser($request->user()),
 		]);
 	}
@@ -75,25 +75,28 @@ class EventController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		$request->user()->events()->create([
+		$request->user()->sessions()->create([
 			'template_id' => $request->template_id,
 		]);
 
-		$templates = Template::where('user_id', $request->user()->id)->get();
-		$events = Event::where('user_id', $request->user()->id)->get();
-
-		return Redirect::route('events.index')->with('message', 'Session created');
+		return Redirect::route('sessions.index')->with('message', 'Session created');
 	}
 
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  Event $event
+	 * @param  Session $session
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show($id)
 	{
-		return view('events.show', ['event' => Event::findOrFail($id)]);
+		$session = Session::findOrFail($id);
+		
+		$this->authorize('show', $session);
+
+		return view('sessions.show', [
+		    'session' => $session,
+		]);
 	}
 
 	/**
@@ -122,13 +125,15 @@ class EventController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  Event $event
+	 * @param  Session $session
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(Event $event)
+	public function destroy($id)
 	{
-		// $this->authorize('destroy', $event);
-		$event->delete();
-		return Redirect::route('events.index')->with('message', 'Session deleted');
+		$session = Session::findOrFail($id);
+		// dd($id);
+		$this->authorize('destroy', $session);
+		$session->delete();
+		return Redirect::route('sessions.index')->with('message', 'Session deleted');
 	}
 }

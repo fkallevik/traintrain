@@ -21,4 +21,17 @@ class TemplatePolicy
 	{
 		return $user->id === $template->user_id;
 	}
+
+	/**
+	 * Determine if the given user can view the template.
+	 *
+	 * @param  User $user
+	 * @param  session $session
+	 * @return bool
+	 */
+	public function show(User $user, Template $template)
+	{
+
+		return $user->id === $template->user_id;
+	}
 }

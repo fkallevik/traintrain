@@ -19,7 +19,7 @@
 			<tbody>
 				@foreach ($templates as $template)
 					<tr>
-						<td class="table-text"><a href="/templates/{{ $template->id }}">{{ $template->name }}</a></td>
+						<td class="table-text"><a href="{{ route('templates.show', $template) }}">{{ $template->name }}</a></td>
 					</tr>
 				@endforeach
 			</tbody>

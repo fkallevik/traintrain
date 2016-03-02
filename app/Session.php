@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
+class Session extends Model
 {
 	/**
 	 * The attributes that are mass assignable.
@@ -14,7 +14,7 @@ class Event extends Model
 	protected $fillable = ['template_id'];
 
 	/**
-	 * Get the user that owns the event
+	 * Get the user that owns the session
 	 */
 	public function user()
 	{
@@ -22,7 +22,7 @@ class Event extends Model
 	}
 
 	/**
-	 * Get the template that "owns" the event
+	 * Get the template that "owns" the session
 	 */
 	public function template()
 	{

@@ -27,9 +27,9 @@ class User extends Authenticatable
 	/**
 	 * Get all of the events for the user
 	 */
-	public function events()
+	public function sessions()
 	{
-		return $this->hasMany(Event::class);
+		return $this->hasMany(Session::class);
 	}
 
 	/**

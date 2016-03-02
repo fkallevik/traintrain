@@ -14,11 +14,11 @@ class Template extends Model
 	protected $fillable = ['name'];
 
 	/**
-	 * Get all the events that use the template
+	 * Get all the sessions that use the template
 	 */
-	public function events()
+	public function sessions()
 	{
-		return $this->hasMany('App\Event');
+		return $this->hasMany(Session::class);
 	}
 
 	/**

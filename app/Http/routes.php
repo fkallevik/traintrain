@@ -28,10 +28,10 @@ Route::group(['middleware' => ['web']], function () {
 		return view('welcome');
 	})->middleware('guest');
 
-	// // Events
-	// Route::get('/events', 'EventController@index');
-	// Route::post('/event', 'EventController@store');
-	// Route::delete('/event/{event}', 'EventController@destroy');
+	// // Sessions
+	// Route::get('/sessions', 'SessionController@index');
+	// Route::post('/session', 'SessionController@store');
+	// Route::delete('/session/{session}', 'SessionController@destroy');
 
 	// // Templates
 	// Route::get('/templates', 'TemplateController@index');
@@ -39,8 +39,11 @@ Route::group(['middleware' => ['web']], function () {
 	// Route::post('/template', 'TemplateController@store');
 	// Route::delete('/template/{template}', 'TemplateController@destroy');
 
-	Route::resource('events', 'EventController');
+	// Route::model('sessions', 'Session');
+	// Route::model('templates', 'Template');
+
 	Route::resource('templates', 'TemplateController');
+	Route::resource('sessions', 'SessionController');
 
 	// Authentication Routes
 	Route::auth();

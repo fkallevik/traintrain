@@ -82,9 +82,15 @@ class TemplateController extends Controller
 	 * @param  \App\Template $template
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(Template $template)
+	public function show($id)
 	{
-		return view('templates.show', compact('template'));
+		$template = Template::findOrFail($id);
+		
+		$this->authorize('show', $template);
+
+		return view('templates.show', [
+		    'template' => $template,
+		]);
 	}
 
 	/**

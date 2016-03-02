@@ -6,12 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Session extends Model
 {
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
-	protected $fillable = ['template_id'];
+	protected $guarded = [];
 
 	/**
 	 * Get the user that owns the session

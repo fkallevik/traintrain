@@ -14,7 +14,7 @@ class CreateSessionsTable extends Migration
 	{
 		Schema::create('sessions', function (Blueprint $table) {
 			$table->increments('id');
-			$table->integer('user_id')->index();
+			$table->integer('user_id')->unsigned();
 			$table->integer('template_id')->unsigned();
 			$table->boolean('completed')->default(false);
 			$table->timestamps();

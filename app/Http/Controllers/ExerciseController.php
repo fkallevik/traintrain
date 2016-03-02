@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exercise;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests;
 use App\Template;
 
@@ -11,6 +13,8 @@ class ExerciseController extends Controller
 {
 	protected $rules = [
 		'name' => ['required', 'min:3'],
+		'sets' => ['required', 'min:1'],
+		'reps' => ['required', 'min:1'],
 	];
 
 	/**
@@ -54,9 +58,15 @@ class ExerciseController extends Controller
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(Request $request)
+	public function store(Request $request, $id)
 	{
-		//
+		$this->validate($request, $this->rules);
+
+		$input = Input::all();
+		$input['template_id'] = $id;
+		Exercise::create( $input );
+
+		return Redirect::route('templates.edit', $id)->with('Task created.');
 	}
 
 	/**

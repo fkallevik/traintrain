@@ -14,9 +14,8 @@ class CreateTemplatesTable extends Migration
 	{
 		Schema::create('templates', function (Blueprint $table) {
 			$table->increments('id');
-			$table->integer('user_id')->index();
+			$table->integer('user_id')->unsigned();
 			$table->string('name');
-			$table->longText('exercise_ids'); // json_encode
 			$table->timestamps();
 		});
 	}

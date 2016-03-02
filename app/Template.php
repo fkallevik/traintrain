@@ -6,12 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Template extends Model
 {
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
-	protected $fillable = ['name'];
+	protected $guarded = [];
 
 	/**
 	 * Get all the sessions that use the template
@@ -19,6 +14,14 @@ class Template extends Model
 	public function sessions()
 	{
 		return $this->hasMany(Session::class);
+	}
+
+	/**
+	 * Get all the exercises that the template has
+	 */
+	public function exercises()
+	{
+		return $this->hasMany(Exercise::class);
 	}
 
 	/**

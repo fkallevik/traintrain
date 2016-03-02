@@ -18,7 +18,8 @@
 	    @include('templates/partials/_form_new_name', ['submit_text' => 'Save Name'])
 	{!! Form::close() !!}
 
-	{!! Form::model($template, array('route' => array('templates.exercises.create', $template))) !!}
-		@include('templates/partials/_form_new_exercise', ['submit_text' => 'Add New Exercise'])
-	{!! Form::close() !!}
+
+
+	{!! link_to_route('templates.exercises.create', 'Add New Exercise', $template) !!}
+
 @endsection

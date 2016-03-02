@@ -48,9 +48,6 @@ class SessionController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$templates = Template::where('user_id', $request->user()->id)->get();
-		$sessions = Session::where('user_id', $request->user()->id)->get();
-
 		return view('sessions.index', [
 			'sessions' => $this->sessions->forUser($request->user()),
 			'templates' => $this->templates->forUser($request->user()),

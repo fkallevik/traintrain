@@ -44,8 +44,6 @@ class TemplateController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$templates = Template::where('user_id', $request->user()->id)->get();
-
 		return view('templates.index', [
 			'templates' => $this->templates->forUser($request->user()),
 		]);
@@ -56,9 +54,10 @@ class TemplateController extends Controller
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function create()
+	public function create($templateID)
 	{
-		// Not in use
+		//
+
 	}
 
 	/**
@@ -70,7 +69,7 @@ class TemplateController extends Controller
 	public function store(Request $request)
 	{
 
-		$this->validate($request, $rules);
+		$this->validate($request, $this->rules);
 
 		$newTemplate = $request->user()->templates()->create([
 			'name' => $request->name,

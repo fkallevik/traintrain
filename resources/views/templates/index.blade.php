@@ -4,7 +4,7 @@
 	<h2>Create a Workout Template</h2>
 	
 	{!! Form::model(new App\Template, ['route' => ['templates.store']]) !!}
-	    @include('templates/partials/_form_template_name', ['submit_text' => 'Create Workout Template'])
+	    @include('templates/partials/_form_new_template', ['submit_text' => 'Create Workout Template'])
 	{!! Form::close() !!}
 
 	@if ( !$templates->count() )
